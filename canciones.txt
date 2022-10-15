@@ -1,0 +1,45 @@
+{
+    "canciones":[{
+        "nombre": "9 de Julio",
+        "artista": "Callejeros",
+        "duracion": "226",
+        "frase": "frase",
+        "rutaCancion": "./musicas/9deJulio.mp3",
+        "rutaImagen": "./imagenes/callejeros.jpg"
+    },
+    {
+        "nombre": "A Tender Moon Tempo",
+        "artista": "Vivy flourite eyes",
+        "duracion": "286",
+        "frase": "frase",
+        "rutaCancion": "./musicas/ATenderMoonTemp.mp3",
+        "rutaImagen": "./imagenes/vivy.jpg"    
+    },
+    {
+        "nombre": "Como pasa el tiempo",
+        "artista": "Cuarteto de Nos",
+        "duracion": "260",
+        "frase": "frase",
+        "rutaCancion": "./musicas/ComoPasaElTiempo.mp3",
+        "rutaImagen": "./imagenes/cuarteto.png"    
+    },
+    {
+        "nombre": "Harmonyus",
+        "artista": "Aldnoah.Zero",
+        "duracion": "305",
+        "frase": "Let justice be done, thought the heavens fall",
+        "rutaCancion": "./musicas/Harmonyus.mp3",
+        "rutaImagen": "./imagenes/aldnoah.jpg"    
+    },
+    {
+        "nombre": "Madrugada",
+        "artista": "La Beriso",
+        "duracion": "281",
+        "frase": "frase",
+        "rutaCancion": "./musicas/Madrugada.mp3",
+        "rutaImagen": "./imagenes/beriso.png"   
+    }]
+}
+
+
+

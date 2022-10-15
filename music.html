@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bacis Music Player</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="music.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/973f4891f1.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="favicon.png">
+    </head>
+    <body>
+        <div class="container">
+            <div class="label" style="top: 0px;">
+                <div class="cancionUno">Cancion 1</div>
+                <div class="cancionDos">Cancion 2</div>
+                <div class="cancionTres">Cancion 3</div>
+                <div class="cancionCuatro">Cancion 4</div>
+                <div class="cancionCinco">Cancion 5</div>
+            </div>
+            <div class="artcontainer">
+                <div class="artmenu"><i class="artmenuicon fas fa-solid fa-bars"></i></div>
+                <div class="barcontainer">
+                    <div class="artseconds">
+                        <p class="duracionActual">-</p>
+                        <p class="duracionTotal">-</p>
+                    </div>
+                    <div class="artbar"><progress class="bar"></div>
+                </div>
+            </div>
+            <div class="reproductorcontainer">
+                <div class="infocancion">
+                    <h3 class="titulocancion">-</h3>
+                    <p class="artista">-</p>
+                </div>
+                <div class="reproductor">
+                    <div class="ratras"><i class="fa-solid fa-backward-step"></i></div>
+                    <div class="rpausar"><i class="fa-solid fa-pause"></i></div>
+                    <div class="rrep"><i class="fa-solid fa-play"></i></div>
+                    <div class="radelante"><i class="fa-solid fa-forward-step"></i></div>
+                </div>
+            </div>
+            <div class="statuscontainer">
+                <p class="mensaje">-- Selecciona tu cancion --</p>
+            </div>
+        </div>
+        <script src="music.js"></script>
+    </body>
+</html>

@@ -1,0 +1,157 @@
+body{
+    color: #222;
+    font-family: sans-serif;
+    background-color: lightgreen;
+    padding: 0;
+    margin: 0;
+}
+
+p, h3{
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.artcontainer {
+    background-image: url("./imagenes/aldnoah.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 7;
+}
+
+.artmenu{
+    color: #eee;
+    margin: 2vh;
+    display: flex;
+    justify-content: end;
+}
+
+.artmenu i {
+    font-size: 5vh;
+}
+
+.artseconds{
+    display: flex;
+    justify-content: space-between;
+}
+
+.reproductorcontainer{
+    text-align: center;
+    flex-grow: 2;
+    background-image: linear-gradient(to bottom, rgb(80, 80, 80), #222);
+}
+
+.infocancion{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 1vh 0;
+    margin-bottom: 3vh;
+}
+
+.infocancion h3{
+    color: #fff;
+    font-size: 4vh;
+}
+
+.infocancion p{
+    color: #bbb;
+    font-size: 2vh;
+}
+
+.reproductor{
+    display: flex;
+    justify-content: center;
+}
+
+.reproductor div {
+    margin: 0 2vh;
+}
+
+.ratras {
+    font-size: 10vh;
+    color: rgb(255, 172, 47);
+}
+
+.rpausar {
+    font-size: 10vh;
+    color: rgb(255, 172, 47);
+}
+
+.radelante {
+    font-size: 10vh;
+    color: rgb(255, 172, 47);
+}
+
+.rrep{
+    display: none;
+    font-size: 10vh;
+    color: rgb(255, 172, 47);
+}
+
+.rpausar{
+    display: inline;
+}
+
+.statuscontainer {
+    flex-grow: 1;
+    background-image: linear-gradient(to top, rgb(80, 80, 80), #222);
+}
+
+.statuscontainer p{
+    padding: 2vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    color: #bbb;
+    font-size: 3vh;
+}
+
+.label {
+    transition: all 0.6s;
+    position: absolute;
+    color: #bbb;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #222;
+    width: 100vw;
+    height: 80vh;
+}
+
+.label div{
+    padding: 2.5vh;
+    border-bottom: 2px solid white;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
+    border-radius: 1vh;
+    font-size: 2.5vh;
+}
+
+.duracionTotal, .duracionActual{
+    color: #fff;
+}
+
+.bar{
+    width: 100vw;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+}
+
+.bar::-webkit-progress-bar {
+    background-color: rgb(80, 80, 80);
+}
+
+.bar::-webkit-progress-value{
+    background-color: rgb(255, 172, 47);
+}
