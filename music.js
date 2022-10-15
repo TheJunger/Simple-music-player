@@ -50,6 +50,8 @@ mensajeCont.addEventListener("click", ()=>{
 })
 
 x=0
+reproduciendo = false
+
 
 const cargarCancion = async numero => {
     const request = await fetch("canciones.txt");
@@ -58,46 +60,85 @@ const cargarCancion = async numero => {
 
     const nomCancion = arr[numero].nombre
     const artCancion = arr[numero].artista
-    const duracionCancion = arr[numero].duracion
     const fraseCancion = arr[numero].frase
     const imgCancion = arr[numero].rutaImagen
     let cancion = arr[numero].rutaCancion
 
     tituloCancion.textContent = nomCancion
     artistaCancion.textContent = artCancion
-    let duracionMaximaMin = Math.floor(duracionCancion/60);
-    let duracionMaximaSec = duracionCancion - duracionMaximaMin * 60;
-    duracionCancionTt.textContent = (`${duracionMaximaMin}:${duracionMaximaSec}`)
+
     frasesCancion.textContent = fraseCancion
     imagenCancion.style.backgroundImage = `url('${imgCancion}')`
-    barra.setAttribute("max", `${duracionCancion}`)
-    cancCont = document.createElement("AUDIO")
-    cancCont.setAttribute("src",`${cancion}`)
-    cancCont.setAttribute("autoplay","true")
-    cancCont.addEventListener("timeupdate", () =>{
-        let timeact = Math.floor(cancCont.currentTime)
-        barra.setAttribute("value",timeact)
-        let duracionActualMin = Math.floor(timeact/60);
-        let duracionActualSec = timeact - duracionActualMin * 60;
-        duracionActualC.textContent = `${duracionActualMin}:${duracionActualSec}`
-        if(duracionActualSec < 10){
-            duracionActualC.textContent = `${duracionActualMin}:0${duracionActualSec}`
-        }
-    })
-    cancCont.addEventListener("ended", () =>{
-        if (c < 4) {
-            c++
-            cargarCancion(c)
-            cancCont.setAttribute("src","null")
-            console.log("cancion Cargada "+ c)
-        }
-        else if (c == 4) {
-            c=0
-            cargarCancion(c)
-            cancCont.setAttribute("src","null")
-            console.log("cancion Cargada "+ c)
-        }
-    })
+
+    if(reproduciendo == false) {
+        cancCont = document.createElement("AUDIO")
+        cancCont.setAttribute("src",`${cancion}`)
+        cancCont.setAttribute("autoplay","true")
+        cancCont.addEventListener("loadeddata", ()=>{
+            let duracionMaxima = cancCont.duration
+            let duracionMaximaMin = Math.floor(duracionMaxima/60);
+            let duracionMaximaSec = duracionMaxima - duracionMaximaMin * 60;
+            duracionCancionTt.textContent = (`${duracionMaximaMin}:${Math.floor(duracionMaximaSec)}`)
+            barra.setAttribute("max", `${duracionMaxima}`)
+    
+        })
+        cancCont.addEventListener("timeupdate", () =>{
+            let timeact = Math.floor(cancCont.currentTime)
+            barra.setAttribute("value",timeact)
+            let duracionActualMin = Math.floor(timeact/60);
+            let duracionActualSec = timeact - duracionActualMin * 60;
+            duracionActualC.textContent = `${duracionActualMin}:${duracionActualSec}`
+            if(duracionActualSec < 10){
+                duracionActualC.textContent = `${duracionActualMin}:0${duracionActualSec}`
+            }
+        })
+        reproduciendo = true
+        cancCont.addEventListener("ended", () =>{
+            if (c < 4) {
+                c++
+                cargarCancion(c)
+                cancCont.setAttribute("src","null")
+            }
+            else if (c == 4) {
+                c=0
+                cargarCancion(c)
+                cancCont.setAttribute("src","null")
+            }
+        })
+    }
+    if(reproduciendo == true){
+        cancCont.setAttribute("src",`${cancion}`)
+        cancCont.setAttribute("autoplay","true")
+        cancCont.addEventListener("loadeddata", ()=>{
+            let duracionMaxima = cancCont.duration
+            let duracionMaximaMin = Math.floor(duracionMaxima/60);
+            let duracionMaximaSec = duracionMaxima - duracionMaximaMin * 60;
+            duracionCancionTt.textContent = (`${duracionMaximaMin}:${Math.floor(duracionMaximaSec)}`)
+            barra.setAttribute("max", `${duracionMaxima}`)
+    
+        })
+        cancCont.addEventListener("timeupdate", () =>{
+            let timeact = Math.floor(cancCont.currentTime)
+            barra.setAttribute("value",timeact)
+            let duracionActualMin = Math.floor(timeact/60);
+            let duracionActualSec = timeact - duracionActualMin * 60;
+            duracionActualC.textContent = `${duracionActualMin}:${duracionActualSec}`
+            if(duracionActualSec < 10){
+                duracionActualC.textContent = `${duracionActualMin}:0${duracionActualSec}`
+            }
+        })
+        reproduciendo = true
+        cancCont.addEventListener("ended", () =>{
+            if (c < 4) {
+                c++
+                cargarCancion(c)
+            }
+            else if (c == 4) {
+                c=0
+                cargarCancion(c)
+            }
+        })
+    }
     x=0
     comprobacion()
     comprobacion2()
@@ -107,9 +148,11 @@ c=undefined
 let comprobacion2 = () =>{
     if (c==0){
         anteriorC.style.color = "gray"
+        siguienteC.style.color = "rgb(255, 172, 47)"
     }
     else if(c==4){
         siguienteC.style.color = "gray"
+        anteriorC.style.color ="rgb(255, 172, 47)"
     }
     else{
         anteriorC.style.color ="rgb(255, 172, 47)"
@@ -120,11 +163,9 @@ let comprobacion2 = () =>{
 
 anteriorC.addEventListener("click",()=>{
     if(c>0){
-        console.log(c)
         c--
         cargarCancion(c)
         cancCont.setAttribute("src","null")
-        console.log(c)
     }
     else{
         console.log("no se puede volver atras")
@@ -133,53 +174,41 @@ anteriorC.addEventListener("click",()=>{
 
 siguienteC.addEventListener("click",()=>{
     if(c<4){
-        console.log(c)
         c++
         cargarCancion(c)
         cancCont.setAttribute("src","null")
-        console.log(c)
     }
     else{
         console.log("no se puede seguir avanzando")
     }
 })
 
-cancCont = document.createElement("AUDIO")
-
 opcionUno.addEventListener("click", ()=>{
     c=0
-    console.log("Cancion uno seleciconada")
     cargarCancion(0)
-    cancCont.setAttribute("src","null")
 })
 
 opcionDos.addEventListener("click", ()=>{
     c=1
-    console.log("Cancion uno seleciconada")
     cargarCancion(1)
-    cancCont.setAttribute("src","null")
 })
 
 opcionTres.addEventListener("click", ()=>{
     c=2
-    console.log("Cancion uno seleciconada")
     cargarCancion(2)
-    cancCont.setAttribute("src","null")
 })
 
 opcionCuatro.addEventListener("click", ()=>{
     c=3
-    console.log("Cancion uno seleciconada")
     cargarCancion(3)
-    cancCont.setAttribute("src","null")
 })
 
 opcionCinco.addEventListener("click", ()=>{
     c=4
-    console.log("Cancion uno seleciconada")
     cargarCancion(4)
-    cancCont.setAttribute("src","null")
 })
+
+// play/pause event
 
 let rep = () =>{
     cancCont.play()
