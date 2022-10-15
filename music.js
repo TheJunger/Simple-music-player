@@ -17,6 +17,7 @@ duracionCancionTt = document.querySelector(".duracionTotal")
 duracionActualC = document.querySelector(".duracionActual")
 
 frasesCancion = document.querySelector(".mensaje")
+
 imagenCancion = document.querySelector(".artcontainer") // background-image url
 
 reproducir = document.querySelector(".rrep")
@@ -92,20 +93,18 @@ const cargarCancion = async numero => {
                 duracionActualC.textContent = `${duracionActualMin}:0${duracionActualSec}`
             }
         })
-        reproduciendo = true
         cancCont.addEventListener("ended", () =>{
             if (c < 4) {
                 c++
                 cargarCancion(c)
-                cancCont.setAttribute("src","null")
             }
             else if (c == 4) {
                 c=0
                 cargarCancion(c)
-                cancCont.setAttribute("src","null")
             }
         })
     }
+    reproduciendo = true
     if(reproduciendo == true){
         cancCont.setAttribute("src",`${cancion}`)
         cancCont.setAttribute("autoplay","true")
