@@ -1,0 +1,30 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    flex-direction: column;
+    justify-content: center;
+    width: 30vw;
+    height: 80vh;
+    margin-top: 9vh;
+    margin-bottom: 9vh;
+    border: 1vh solid #222;
+    border-radius: 3vh;
+    overflow: hidden;
+}
+
+.label{
+    width: 30vw;
+    height: 80vh;
+    margin-top: 10vh;
+    border-radius: 3vh;
+    overflow: hidden;
+}
+
+.bar{
+    margin: 0;
+    padding: 0;
+    width: 30vw;
+}

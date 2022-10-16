@@ -2,37 +2,37 @@
     "canciones":[{
         "nombre": "9 de Julio",
         "artista": "Callejeros",
-        "frase": "Callejeros nunca muere",
+        "frase": "-",
         "rutaCancion": "./musicas/9deJulio.mp3",
         "rutaImagen": "./imagenes/callejeros.jpg"
     },
     {
-        "nombre": "A Tender Moon Tempo",
-        "artista": "Vivy flourite eyes",
-        "frase": "frase",
-        "rutaCancion": "./musicas/ATenderMoonTemp.mp3",
-        "rutaImagen": "./imagenes/vivy.jpg"    
+        "nombre": "Hold The Line",
+        "artista": "Toto",
+        "frase": "Hold the line",
+        "rutaCancion": "./musicas/HoldTheLine.mp3",
+        "rutaImagen": "./imagenes/toto.jpg"    
     },
     {
         "nombre": "Como pasa el tiempo",
         "artista": "Cuarteto de Nos",
-        "frase": "frase",
+        "frase": "-",
         "rutaCancion": "./musicas/ComoPasaElTiempo.mp3",
-        "rutaImagen": "./imagenes/cuarteto.png"    
+        "rutaImagen": "./imagenes/cuarteto.jpg"    
     },
     {
-        "nombre": "Harmonyus",
-        "artista": "Aldnoah.Zero",
-        "frase": "Let justice be done, thought the heavens fall",
-        "rutaCancion": "./musicas/Harmonyus.mp3",
-        "rutaImagen": "./imagenes/aldnoah.jpg"    
+        "nombre": "Smooth Criminal",
+        "artista": "Michael Jackson",
+        "frase": "Smooth Criminal",
+        "rutaCancion": "./musicas/SmoothCriminal.mp3",
+        "rutaImagen": "./imagenes/michael.jpg"    
     },
     {
         "nombre": "Madrugada",
         "artista": "La Beriso",
-        "frase": "frase",
+        "frase": "-",
         "rutaCancion": "./musicas/Madrugada.mp3",
-        "rutaImagen": "./imagenes/beriso.png"   
+        "rutaImagen": "./imagenes/beriso.jpg"   
     }]
 }
 
