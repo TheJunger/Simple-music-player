@@ -1,34 +1,71 @@
-menuDesplegado = document.querySelector(".label")
-menuBarras = document.querySelector(".artmenuicon")
-container = document.querySelector(".container")
-mensajeCont = document.querySelector(".statuscontainer")
-barra= document.querySelector(".bar")
+const menuDesplegado = document.querySelector(".label")
+const menuBarras = document.querySelector(".artmenuicon")
+const container = document.querySelector(".container")
+const mensajeCont = document.querySelector(".statuscontainer")
+const barra= document.querySelector(".bar")
 
-opcionUno = document.querySelector(".cancionUno")
-opcionDos = document.querySelector(".cancionDos")
-opcionTres = document.querySelector(".cancionTres")
-opcionCuatro = document.querySelector(".cancionCuatro")
-opcionCinco = document.querySelector(".cancionCinco")
+const opcionUno = document.querySelector(".cancionUno")
+const opcionDos = document.querySelector(".cancionDos")
+const opcionTres = document.querySelector(".cancionTres")
+const opcionCuatro = document.querySelector(".cancionCuatro")
+const opcionCinco = document.querySelector(".cancionCinco")
 
-tituloCancion = document.querySelector(".titulocancion")
-artistaCancion = document.querySelector(".artista")
+const tituloCancion = document.querySelector(".titulocancion")
+const artistaCancion = document.querySelector(".artista")
 
-duracionCancionTt = document.querySelector(".duracionTotal")
-duracionActualC = document.querySelector(".duracionActual")
+const duracionCancionTt = document.querySelector(".duracionTotal")
+const duracionActualC = document.querySelector(".duracionActual")
 
-frasesCancion = document.querySelector(".mensaje")
+const frasesCancion = document.querySelector(".mensaje")
 
-imagenCancion = document.querySelector(".artcontainer") // background-image url
+const imagenCancion = document.querySelector(".artcontainer") // background-image url
 
-reproducir = document.querySelector(".rrep")
-pausar = document.querySelector(".rpausar")
-siguienteC = document.querySelector(".radelante")
-anteriorC = document.querySelector(".ratras")
+const reproducir = document.querySelector(".rrep")
+const pausar = document.querySelector(".rpausar")
+const siguienteC = document.querySelector(".radelante")
+const anteriorC = document.querySelector(".ratras")
+const cancCont = document.createElement("AUDIO")
+
+const canciones = {
+    "canciones":[{
+        "nombre": "9 de Julio",
+        "artista": "Callejeros",
+        "frase": "-",
+        "rutaCancion": "./musicas/9deJulio.mp3",
+        "rutaImagen": "./imagenes/callejeros.jpg"
+    },
+    {
+        "nombre": "Hold The Line",
+        "artista": "Toto",
+        "frase": "Hold the line",
+        "rutaCancion": "./musicas/HoldTheLine.mp3",
+        "rutaImagen": "./imagenes/toto.jpg"    
+    },
+    {
+        "nombre": "Como pasa el tiempo",
+        "artista": "Cuarteto de Nos",
+        "frase": "-",
+        "rutaCancion": "./musicas/ComoPasaElTiempo.mp3",
+        "rutaImagen": "./imagenes/cuarteto.jpg"    
+    },
+    {
+        "nombre": "Smooth Criminal",
+        "artista": "Michael Jackson",
+        "frase": "Smooth Criminal",
+        "rutaCancion": "./musicas/SmoothCriminal.mp3",
+        "rutaImagen": "./imagenes/michael.jpg"    
+    },
+    {
+        "nombre": "Madrugada",
+        "artista": "La Beriso",
+        "frase": "-",
+        "rutaCancion": "./musicas/Madrugada.mp3",
+        "rutaImagen": "./imagenes/beriso.jpg"   
+    }]
+}
 
 const nombresCancion = async () =>{
-    const request = await fetch("canciones.txt");
-    const content = await request.json()
-    const arr = content.canciones
+    const arr = canciones.canciones
 
     opcionUno.textContent = `${arr[0].nombre} - ${arr[0].artista}`
     opcionDos.textContent = `${arr[1].nombre} - ${arr[1].artista}`
@@ -50,19 +87,17 @@ mensajeCont.addEventListener("click", ()=>{
     menuDesplegado.style.top="-1000px"
 })
 
-x=0
-reproduciendo = false
+let x=0
+let reproduciendo = false
 
 
-const cargarCancion = async numero => {
-    const request = await fetch("canciones.txt");
-    const content = await request.json()
-    const arr = content.canciones
+const cargarCancion = async (numero) => {
+    const arr = canciones.canciones
 
-    const nomCancion = arr[numero].nombre
-    const artCancion = arr[numero].artista
-    const fraseCancion = arr[numero].frase
-    const imgCancion = arr[numero].rutaImagen
+    let nomCancion = arr[numero].nombre
+    let artCancion = arr[numero].artista
+    let fraseCancion = arr[numero].frase
+    let imgCancion = arr[numero].rutaImagen
     let cancion = arr[numero].rutaCancion
 
     tituloCancion.textContent = nomCancion
@@ -72,7 +107,7 @@ const cargarCancion = async numero => {
     imagenCancion.style.backgroundImage = `url('${imgCancion}')`
 
     if(reproduciendo == false) {
-        cancCont = document.createElement("AUDIO")
+        cancCont.setAttribute("src",`${null}`)
         cancCont.setAttribute("src",`${cancion}`)
         cancCont.setAttribute("autoplay","true")
         cancCont.addEventListener("loadeddata", ()=>{
@@ -103,9 +138,11 @@ const cargarCancion = async numero => {
                 cargarCancion(c)
             }
         })
+        reproduciendo = true
     }
-    reproduciendo = true
+
     if(reproduciendo == true){
+        cancCont.setAttribute("src",`${null}`)
         cancCont.setAttribute("src",`${cancion}`)
         cancCont.setAttribute("autoplay","true")
         cancCont.addEventListener("loadeddata", ()=>{
@@ -141,8 +178,9 @@ const cargarCancion = async numero => {
     x=0
     comprobacion()
     comprobacion2()
+
 }
-c=undefined
+let c=undefined
 
 let comprobacion2 = () =>{
     if (c==0){
@@ -162,9 +200,12 @@ let comprobacion2 = () =>{
 
 anteriorC.addEventListener("click",()=>{
     if(c>0){
+        console.log(c)
         c--
-        cargarCancion(c)
+        console.log(c)
         cancCont.setAttribute("src","null")
+        cargarCancion(c)
+
     }
     else{
         console.log("no se puede volver atras")
@@ -173,9 +214,12 @@ anteriorC.addEventListener("click",()=>{
 
 siguienteC.addEventListener("click",()=>{
     if(c<4){
+        console.log(c)
         c++
-        cargarCancion(c)
+        console.log(c)
         cancCont.setAttribute("src","null")
+        cargarCancion(c)
+
     }
     else{
         console.log("no se puede seguir avanzando")
@@ -239,5 +283,4 @@ const comprobacion = () =>{
         reproducir.style.display="none"
     }
 }
-
 
